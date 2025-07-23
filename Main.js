@@ -1,13 +1,13 @@
 function getComputerChoice(){
     let num = Math.floor(Math.random() * 3);
     if(num === 0){
-        return "Rock";
+        return "rock";
     }
     else if(num === 1){
-        return "Paper";
+        return "paper";
     }
     else{
-        return "Scissor";
+        return "scissor";
     }
 }
 
@@ -18,20 +18,22 @@ function getHumanChoice(){
 humanScore = 0;
 computerScore = 0;
 
-if(getHumanChoice().toLowerCase() === getComputerChoice().toLowerCase()){
-    console.log(`Human: ${humanScore} and Computer: ${computerScore}`);
-}
+let humanDecision = getHumanChoice().toLowerCase();
+let computerDecision = getComputerChoice().toLowerCase();
 
-if(getHumanChoice().toLowerCase() === "rock" && getComputerChoice().toLowerCase() === "paper"){
+if(humanDecision === "rock" && computerDecision === "paper"){
     computerScore++;
     console.log(`Human: ${humanScore} and Computer: ${computerScore}`);
 }
-else if(getHumanChoice().toLowerCase() === "paper" && getComputerChoice().toLowerCase() === "scissor"){
+else if(humanDecision === "paper" && computerDecision === "scissor"){
     computerScore++;
     console.log(`Human: ${humanScore} and Computer: ${computerScore}`);
 }
-else if(getHumanChoice().toLowerCase() === "scissor" && getComputerChoice().toLowerCase() === "rock"){
+else if(humanDecision === "scissor" && computerDecision === "rock"){
     computerScore++;
+    console.log(`Human: ${humanScore} and Computer: ${computerScore}`);
+}
+else if(humanDecision === computerDecision){
     console.log(`Human: ${humanScore} and Computer: ${computerScore}`);
 }
 else{
