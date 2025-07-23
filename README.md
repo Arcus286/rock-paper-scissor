@@ -1,1 +1,1 @@
-# rock-paper-scissor
+This is the project that I have built using basic JavaScript.
