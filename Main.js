@@ -1,3 +1,6 @@
+let humanScore = 0;
+let computerScore = 0;
+
 function getComputerChoice(){
     let num = Math.floor(Math.random() * 3);
     if(num === 0){
@@ -15,28 +18,37 @@ function getHumanChoice(){
     return prompt("Choose Rock or Paper or Scissor: ");
 }
 
-humanScore = 0;
-computerScore = 0;
+function playRound(humanDecision,computerDecision){
+    if(humanDecision === "rock" && computerDecision === "paper"){
+        computerScore++;
+    }
+    else if(humanDecision === "paper" && computerDecision === "scissor"){
+        computerScore++;
+    }
+    else if(humanDecision === "scissor" && computerDecision === "rock"){
+        computerScore++;
+    }
+    else if(humanDecision === computerDecision){
+        //tie no score change
+    }
+    else{
+        humanScore++;
+    }
+}
 
-let humanDecision = getHumanChoice().toLowerCase();
-let computerDecision = getComputerChoice().toLowerCase();
+function playGame(){
+    for(let i = 1;i<=5;i++){
+        let humanDecision = getHumanChoice().toLowerCase();
+        let computerDecision = getComputerChoice();
+        playRound(humanDecision,computerDecision);
+    }
+    console.log(`Human: ${humanScore} and Computer: ${computerScore}`);
+}
 
-if(humanDecision === "rock" && computerDecision === "paper"){
-    computerScore++;
-    console.log(`Human: ${humanScore} and Computer: ${computerScore}`);
-}
-else if(humanDecision === "paper" && computerDecision === "scissor"){
-    computerScore++;
-    console.log(`Human: ${humanScore} and Computer: ${computerScore}`);
-}
-else if(humanDecision === "scissor" && computerDecision === "rock"){
-    computerScore++;
-    console.log(`Human: ${humanScore} and Computer: ${computerScore}`);
-}
-else if(humanDecision === computerDecision){
-    console.log(`Human: ${humanScore} and Computer: ${computerScore}`);
+playGame();
+if(humanScore > computerScore){
+    console.log(`The user won with ${humanScore} points`);
 }
 else{
-    humanScore++;
-    console.log(`Human: ${humanScore} and Computer: ${computerScore}`);
+    console.log(`The computer won with ${computerScore} points`);
 }
