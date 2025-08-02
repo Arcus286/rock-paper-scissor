@@ -14,9 +14,9 @@ function getComputerChoice(){
     }
 }
 
-function getHumanChoice(){
-    return prompt("Choose Rock or Paper or Scissor: ");
-}
+// function getHumanChoice(){
+//     return prompt("Choose Rock or Paper or Scissor: ");
+// }
 
 function playRound(humanDecision,computerDecision){
     if(humanDecision === "rock" && computerDecision === "paper"){
@@ -34,21 +34,45 @@ function playRound(humanDecision,computerDecision){
     else{
         humanScore++;
     }
+    console.log(`Computer: ${computerScore} Player: ${humanScore}`);
 }
 
-function playGame(){
-    for(let i = 1;i<=5;i++){
-        let humanDecision = getHumanChoice().toLowerCase();
-        let computerDecision = getComputerChoice();
-        playRound(humanDecision,computerDecision);
+let humanDecision;
+let computerDecision = getComputerChoice();
+
+let menu = document.querySelector("#buttons");
+menu.addEventListener("click",(event)=>{
+    let target = event.target;
+
+    switch(target.id){
+        case "rock":
+            humanDecision = "rock";
+            playRound(humanDecision,computerDecision);
+            break;
+        case "paper":
+            humanDecision = "paper";
+            playRound(humanDecision,computerDecision);
+            break;
+        case "scissor":
+            humanDecision = "paper";
+            playRound(humanDecision,computerDecision);
+            break;
     }
-    console.log(`Human: ${humanScore} and Computer: ${computerScore}`);
-}
+})
 
-playGame();
-if(humanScore > computerScore){
-    console.log(`The user won with ${humanScore} points`);
-}
-else{
-    console.log(`The computer won with ${computerScore} points`);
-}
+// function playGame(){
+//     for(let i = 1;i<=5;i++){
+//         let humanDecision = getHumanChoice().toLowerCase();
+//         let computerDecision = getComputerChoice();
+//         playRound(humanDecision,computerDecision);
+//     }
+//     console.log(`Human: ${humanScore} and Computer: ${computerScore}`);
+// }
+
+// playGame();
+// if(humanScore > computerScore){
+//     console.log(`The user won with ${humanScore} points`);
+// }
+// else{
+//     console.log(`The computer won with ${computerScore} points`);
+// }
