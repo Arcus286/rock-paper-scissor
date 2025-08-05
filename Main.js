@@ -14,10 +14,6 @@ function getComputerChoice(){
     }
 }
 
-// function getHumanChoice(){
-//     return prompt("Choose Rock or Paper or Scissor: ");
-// }
-
 function playRound(humanDecision,computerDecision){
     if(humanDecision === "rock" && computerDecision === "paper"){
         computerScore++;
@@ -34,15 +30,18 @@ function playRound(humanDecision,computerDecision){
     else{
         humanScore++;
     }
-    console.log(`Computer: ${computerScore} Player: ${humanScore}`);
+    el1.innerHTML = `Computer: ${computerScore} Player: ${humanScore}`;
 }
 
-let humanDecision;
-let computerDecision = getComputerChoice();
+let el = document.querySelector("#result");
+let el1 = document.querySelector("#score")
+let body = document.querySelector("body");
 
 let menu = document.querySelector("#buttons");
 menu.addEventListener("click",(event)=>{
     let target = event.target;
+    let humanDecision;
+    let computerDecision = getComputerChoice();
 
     switch(target.id){
         case "rock":
@@ -54,25 +53,21 @@ menu.addEventListener("click",(event)=>{
             playRound(humanDecision,computerDecision);
             break;
         case "scissor":
-            humanDecision = "paper";
+            humanDecision = "scissor";
             playRound(humanDecision,computerDecision);
             break;
     }
+    if(computerScore == 5 ||  humanScore == 5){
+        let btn = document.querySelectorAll("button");
+        btn.forEach((button)=>{
+            button.disabled = true;
+        })
+        if(computerScore > humanScore){
+            // console.log("The computer wins");
+            el.innerHTML = "<h3>The computer wins</h3>";
+        }
+        else{
+            el.innerHTML = "<h3>The user wins</h3>";
+        }  
+    }
 })
-
-// function playGame(){
-//     for(let i = 1;i<=5;i++){
-//         let humanDecision = getHumanChoice().toLowerCase();
-//         let computerDecision = getComputerChoice();
-//         playRound(humanDecision,computerDecision);
-//     }
-//     console.log(`Human: ${humanScore} and Computer: ${computerScore}`);
-// }
-
-// playGame();
-// if(humanScore > computerScore){
-//     console.log(`The user won with ${humanScore} points`);
-// }
-// else{
-//     console.log(`The computer won with ${computerScore} points`);
-// }
